@@ -107,12 +107,12 @@
         </div>
 
         <figure style="position:relative;margin:0;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:#111f16;border:1px solid #24352a;">
-          <img src="images/podijum-premil.jpg" alt="Pas na pobedničkom podijumu izložbe" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s ease;" style-hover="transform:scale(1.06);">
+          <img src="images/podijum-premil.jpg" onDoubleClick="{{ fsImg }}" alt="Pas na pobedničkom podijumu izložbe" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s ease;" style-hover="transform:scale(1.06);">
           <figcaption style="{{ capStyle }}">{{ t.galPodium }}</figcaption>
         </figure>
 
         <figure style="position:relative;margin:0;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:#111f16;border:1px solid #24352a;">
-          <img src="images/1.jpg" alt="Seter sa osvojenim peharima" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s ease;" style-hover="transform:scale(1.06);">
+          <img src="images/1.jpg" onDoubleClick="{{ fsImg }}" alt="Seter sa osvojenim peharima" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s ease;" style-hover="transform:scale(1.06);">
           <figcaption style="{{ capStyle }}">{{ t.galPehari }}</figcaption>
         </figure>
 
@@ -123,7 +123,7 @@
         </div>
 
         <figure style="position:relative;margin:0;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:#111f16;border:1px solid #24352a;">
-          <img src="images/lov-ulov.jpg" alt="Pas u polju sa ulovom" style="width:100%;height:100%;object-fit:cover;object-position:center 34%;display:block;transition:transform .55s ease;" style-hover="transform:scale(1.06);">
+          <img src="images/lov-ulov.jpg" onDoubleClick="{{ fsImg }}" alt="Pas u polju sa ulovom" style="width:100%;height:100%;object-fit:cover;object-position:center 34%;display:block;transition:transform .55s ease;" style-hover="transform:scale(1.06);">
           <figcaption style="{{ capLight }}">{{ t.galLovUlov }}</figcaption>
         </figure>
 
@@ -351,6 +351,7 @@ class Component extends DCLogic {
       playIzl: () => { const v = this._izl; if (v) { v.play().catch(()=>{ try{v.load();v.play();}catch(e){} }); } },
       toggleIzl: () => { const v = this._izl; if (!v) return; if (v.paused) v.play(); else v.pause(); },
       fsIzl: () => this._fs(this._izl),
+      fsImg: (e) => this._fs(e.currentTarget),
       onIzlPlay: () => this.setState({ izlPlaying: true }),
       onIzlPause: () => this.setState({ izlPlaying: false }),
       izlBtnStyle: pb(mob ? 54 : 72, this.state.izlPlaying)
