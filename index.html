@@ -20,7 +20,12 @@
   h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;margin:0;line-height:1.02;letter-spacing:-0.02em;text-wrap:balance;}
   p{margin:0;}
   .br-m{display:none;}
-  @media (max-width:600px){ .br-m{display:inline;} .sep-d{display:none;} }
+  .hero-bg{object-position:center 28%;}
+  .hero-sec{min-height:clamp(600px,90vh,900px);}
+  @media (max-width:600px){ .br-m{display:inline;} .sep-d{display:none;} .hero-sec{flex-direction:column;min-height:auto !important;padding:clamp(48px,9vw,90px) 24px 36px !important;} .hero-content{order:1;} .hero-bg{position:static !important;inset:auto !important;order:2;width:100% !important;height:auto !important;object-fit:contain !important;margin-top:32px;border-radius:16px;} .hero-ov{display:none !important;} .hero-cta{padding:13px 22px !important;font-size:0.95rem !important;} }
+  .gal-grid{display:grid;gap:16px;grid-template-columns:repeat(3,1fr);}
+  @media (max-width:1040px){ .gal-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:600px){ .gal-grid{grid-template-columns:1fr;} }
 </style>
 </helmet>
 <div style="background:#0d1811;color:#e8ede6;">
@@ -28,7 +33,7 @@
 
   <header style="position:sticky;top:0;z-index:20;background:rgba(13,24,17,0.8);backdrop-filter:blur(10px);border-bottom:1px solid #24352a;">
     <div ref="{{ measureRef }}" style="max-width:none;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:14px 20px;">
-      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:19px;color:#f4f2ea;white-space:nowrap;">From Valjevo Green Fields</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(14px,4.3vw,19px);color:#f4f2ea;white-space:nowrap;">From Valjevo Green Fields</div>
       <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
       <div style="display:flex;align-items:center;gap:16px;">
         <div style="display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;">
@@ -57,28 +62,28 @@
     </sc-if>
   </header>
 
-  <section style="position:relative;padding:clamp(56px,9vw,120px) 24px clamp(48px,6vw,80px);overflow:hidden;">
-    <div style="position:absolute;inset:0;background:radial-gradient(120% 90% at 80% 0%, #17301f 0%, #0d1811 60%);"></div>
-    <div style="position:relative;max-width:none;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;">
-      <div style="display:inline-block;text-align:center;border:1px solid #3a4d3f;color:#c9a24b;padding:8px 16px;border-radius:12px;font-family:'DM Mono',monospace;font-size:clamp(10px,2.9vw,12px);letter-spacing:0.05em;line-height:1.6;">{{ t.badge1 }}<span class="sep-d"> · </span><br class="br-m">{{ t.badge2 }}</div>
-      <h1 style="margin-top:28px;font-size:clamp(2.4rem,7.2vw,5.4rem);font-weight:800;max-width:34ch;"><span style="white-space:nowrap;">{{ t.heroTitle1 }}</span> <br class="br-m"><span style="white-space:nowrap;">{{ t.heroTitle2 }}</span><br><span style="white-space:nowrap;">{{ t.heroTitle3 }}</span></h1>
-      <p style="margin-top:24px;font-size:clamp(0.72rem,2.5vw,1.35rem);color:#b3c1b6;max-width:none;line-height:1.5;"><span style="white-space:nowrap;">{{ t.heroSub1 }}</span> <br class="br-m"><span style="white-space:nowrap;">{{ t.heroSub2 }}</span><br><span style="white-space:nowrap;">{{ t.heroSub3 }}</span></p>
+  <section class="hero-sec" style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(72px,9vw,120px) 24px;overflow:hidden;">
+    <img src="images/hero-seter-stav.jpg" alt="Engleski seter u stavu na izložbi" class="hero-bg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
+    <div class="hero-ov" style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(13,24,17,0.66) 0%, rgba(13,24,17,0.42) 42%, rgba(13,24,17,0.9) 100%);"></div>
+    <div class="hero-content" style="position:relative;max-width:none;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;">
+      <div style="display:inline-block;text-align:center;border:1px solid rgba(201,162,75,0.55);background:rgba(13,24,17,0.35);backdrop-filter:blur(4px);color:#e0bb63;padding:8px 16px;border-radius:12px;font-family:'DM Mono',monospace;font-size:clamp(10px,2.9vw,12px);letter-spacing:0.05em;line-height:1.6;">{{ t.badge1 }}<span class="sep-d"> · </span><br class="br-m">{{ t.badge2 }}</div>
+      <h1 style="margin-top:28px;font-size:clamp(2.4rem,7.2vw,5.4rem);font-weight:800;max-width:34ch;text-shadow:0 4px 30px rgba(0,0,0,0.55);"><span style="white-space:nowrap;">{{ t.heroTitle1 }}</span> <br class="br-m"><span style="white-space:nowrap;">{{ t.heroTitle2 }}</span><br><span style="white-space:nowrap;">{{ t.heroTitle3 }}</span></h1>
+      <p style="margin-top:24px;font-size:clamp(0.72rem,2.5vw,1.35rem);color:#e6ece6;max-width:none;line-height:1.5;text-shadow:0 2px 16px rgba(0,0,0,0.55);"><span style="white-space:nowrap;">{{ t.heroSub1 }}</span> <br class="br-m"><span style="white-space:nowrap;">{{ t.heroSub2 }}</span><br><span style="white-space:nowrap;">{{ t.heroSub3 }}</span></p>
       <div style="margin-top:34px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;">
-        <a href="https://calendly.com/nenadmilosevic2026/30min" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;background:#c9a24b;color:#0d1811;padding:16px 32px;border-radius:8px;font-weight:700;font-size:1.05rem;" style-hover="background:#dcb862;color:#0d1811;">{{ t.heroCta }}</a>
-        <a href="#dokazi" style="display:inline-flex;align-items:center;color:#e8ede6;padding:16px 8px;font-weight:700;font-size:1.05rem;" style-hover="color:#c9a24b;">{{ t.heroSecondary }}</a>
+        <a href="https://calendly.com/nenadmilosevic2026/30min" target="_blank" rel="noopener" class="hero-cta" style="display:inline-flex;align-items:center;background:#c9a24b;color:#0d1811;padding:16px 32px;border-radius:8px;font-weight:700;font-size:1.05rem;box-shadow:0 12px 34px -8px rgba(0,0,0,0.6);" style-hover="background:#dcb862;color:#0d1811;">{{ t.heroCta }}</a>
+        <a href="#galerija" style="display:inline-flex;align-items:center;color:#f4f2ea;padding:16px 8px;font-weight:700;font-size:1.05rem;" style-hover="color:#c9a24b;">{{ t.heroSecondary }}</a>
       </div>
-      <div style="width: 100%; margin-top: 48px; border-radius: 16px; overflow: hidden"><img src="images/hero-seter-stav.jpg" alt="Engleski seter u stavu na izložbi" style="width:100%;height:auto;display:block;"></div>
     </div>
   </section>
 
   <section id="dokazi" style="padding:clamp(28px,4vw,44px) 24px;">
     <div style="max-width:none;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;gap:14px;">
       <div style="flex:1 1 150px;min-width:150px;background:#111f16;border:1px solid #24352a;border-radius:14px;padding:clamp(16px,2.4vw,26px) clamp(10px,1.6vw,20px);text-align:center;">
-        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.5rem,4.6vw,2.6rem);line-height:1.05;color:#c9a24b;word-break:break-word;">30+</div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.5rem,4.6vw,2.6rem);line-height:1.05;color:#c9a24b;word-break:break-word;">{{ expDisplay }}</div>
         <div style="margin-top:8px;font-size:clamp(0.7rem,1.9vw,0.92rem);color:#9db0a1;">{{ t.statExp }}</div>
       </div>
       <a href="https://www.facebook.com/share/1VpPs6Rf3s/" target="_blank" rel="noopener" style="flex:1 1 150px;min-width:150px;background:#111f16;border:1px solid #c9a24b;border-radius:14px;padding:clamp(16px,2.4vw,26px) clamp(10px,1.6vw,20px);display:block;color:inherit;text-decoration:none;text-align:center;" style-hover="border-color:#e0bb63;">
-        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.5rem,4.6vw,2.6rem);line-height:1.05;color:#c9a24b;word-break:break-word;">{{ t.statFollowNum }}</div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.5rem,4.6vw,2.6rem);line-height:1.05;color:#c9a24b;word-break:break-word;">{{ followDisplay }}</div>
         <div style="margin-top:8px;font-size:clamp(0.7rem,1.9vw,0.92rem);color:#9db0a1;display:inline-flex;align-items:center;gap:6px;">{{ t.statFollow }} <span style="color:#c9a24b;">↗</span></div>
       </a>
       <div style="flex:1 1 150px;min-width:150px;background:#111f16;border:1px solid #24352a;border-radius:14px;padding:clamp(16px,2.4vw,26px) clamp(10px,1.6vw,20px);text-align:center;">
@@ -88,32 +93,46 @@
     </div>
   </section>
 
-  <section style="padding:clamp(56px,8vw,104px) 24px;">
-    <div style="max-width:none;margin:0 auto;">
-      <div style="font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#c9a24b;text-align:center;">{{ t.showEyebrow }}</div>
-      <h2 style="margin:14px auto 0;font-size:clamp(1.4rem,4vw,3rem);font-weight:800;max-width:none;text-align:center;">{{ t.showTitle }}</h2>
-      <div style="margin-top:36px;display:grid;grid-template-columns:2fr 1fr;grid-auto-rows:1fr;gap:14px;">
-        <div style="grid-row:span 2;position:relative;background:#000;border-radius:14px;min-height:400px;overflow:hidden;">
-          <video ref="{{ izlVideoRef }}" src="images/1-2.mp4" playsinline preload="none" poster="images/izl-poster.jpg" title="Video sa izložbe" onPlay="{{ onIzlPlay }}" onPause="{{ onIzlPause }}" onClick="{{ toggleIzl }}" style="position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover;background:#000;"></video>
-          <button type="button" onClick="{{ playIzl }}" aria-label="Pusti video" style="{{ izlBtnStyle }}"><svg viewBox="0 0 24 24" fill="#0d1811" style="width:46%;height:46%;"><path d="M8 5v14l11-7z"/></svg></button></div>
-        <div style="background:#111f16;border-radius:14px;min-height:190px;overflow:hidden;"><img src="images/podijum-premil.jpg" alt="Pas na pobedničkom podijumu izložbe" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-        <div style="background:#111f16;border-radius:14px;min-height:190px;overflow:hidden;"><img src="images/1.jpg" alt="Seter sa osvojenim peharima" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-      </div>
-    </div>
-  </section>
+  <section id="galerija" style="padding:clamp(56px,8vw,104px) 24px;">
+    <div style="max-width:1400px;margin:0 auto;">
+      <div style="font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#c9a24b;text-align:center;">{{ t.galEyebrow }}</div>
+      <h2 style="margin:14px auto 0;font-size:clamp(1.4rem,4vw,3rem);font-weight:800;max-width:22ch;text-align:center;">{{ t.galTitle }}</h2>
+      <p style="margin:16px auto 0;max-width:none;white-space:normal;text-align:center;color:#9db0a1;font-size:clamp(0.95rem,2vw,1.1rem);">{{ t.galSub }}</p>
+      <div class="gal-grid" style="margin-top:44px;">
 
-  <section style="padding:0 24px clamp(56px,8vw,104px);">
-    <div style="max-width:none;margin:0 auto;">
-      <div style="font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#c9a24b;text-align:center;">{{ t.huntEyebrow }}</div>
-      <h2 style="margin:14px auto 0;font-size:clamp(1.4rem,4vw,3rem);font-weight:800;max-width:none;text-align:center;">{{ t.huntTitle }}</h2>
-      <div style="margin-top:36px;display:grid;grid-template-columns:1fr 2fr;grid-auto-rows:1fr;gap:14px;">
-        <div style="background:#111f16;border-radius:14px;min-height:190px;overflow:hidden;"><img src="images/lov-ulov.jpg" alt="Pas u polju sa ulovom" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-        <div style="grid-row:span 2;position:relative;background:#000;border-radius:14px;min-height:400px;overflow:hidden;">
-          <video ref="{{ lovVideoRef }}" src="images/2-2-2.mp4" playsinline preload="none" poster="images/lov-poster.jpg" title="Video iz lova" onPlay="{{ onLovPlay }}" onPause="{{ onLovPause }}" onClick="{{ toggleLov }}" style="position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover;background:#000;"></video>
-          <button type="button" onClick="{{ playLov }}" aria-label="Pusti video" style="{{ lovBtnStyle }}"><svg viewBox="0 0 24 24" fill="#0d1811" style="width:46%;height:46%;"><path d="M8 5v14l11-7z"/></svg></button></div>
-        <div style="background:#000;border-radius:14px;min-height:190px;position:relative;overflow:hidden;">
-          <video ref="{{ aportVideoRef }}" src="images/aport-top.mp4" playsinline preload="none" poster="images/aport-poster.jpg" title="Aport iz lova" onPlay="{{ onAportPlay }}" onPause="{{ onAportPause }}" onClick="{{ toggleAport }}" style="position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover;background:#000;"></video>
-          <button type="button" onClick="{{ playAport }}" aria-label="Pusti video" style="{{ aportBtnStyle }}"><svg viewBox="0 0 24 24" fill="#0d1811" style="width:44%;height:44%;"><path d="M8 5v14l11-7z"/></svg></button></div>
+        <div style="position:relative;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:#000;border:1px solid #24352a;">
+          <video ref="{{ izlVideoRef }}" src="images/1-2.mp4" playsinline preload="metadata" poster="images/izl-poster.jpg" title="Video sa izložbe" onPlay="{{ onIzlPlay }}" onPause="{{ onIzlPause }}" onClick="{{ toggleIzl }}" onDoubleClick="{{ fsIzl }}" style="position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover;background:#000;transition:transform .55s ease;" style-hover="transform:scale(1.06);"></video>
+          <button type="button" onClick="{{ playIzl }}" aria-label="Pusti video" style="{{ izlBtnStyle }}"><svg viewBox="0 0 24 24" fill="#0d1811" style="width:38%;height:38%;"><path d="M8 5v14l11-7z"/></svg></button>
+          <figcaption style="{{ capStyle }}">{{ t.galIzl }}</figcaption>
+        </div>
+
+        <figure style="position:relative;margin:0;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:#111f16;border:1px solid #24352a;">
+          <img src="images/podijum-premil.jpg" alt="Pas na pobedničkom podijumu izložbe" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s ease;" style-hover="transform:scale(1.06);">
+          <figcaption style="{{ capStyle }}">{{ t.galPodium }}</figcaption>
+        </figure>
+
+        <figure style="position:relative;margin:0;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:#111f16;border:1px solid #24352a;">
+          <img src="images/1.jpg" alt="Seter sa osvojenim peharima" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s ease;" style-hover="transform:scale(1.06);">
+          <figcaption style="{{ capStyle }}">{{ t.galPehari }}</figcaption>
+        </figure>
+
+        <div style="position:relative;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:#000;border:1px solid #24352a;">
+          <video ref="{{ lovVideoRef }}" src="images/2-2-2.mp4" playsinline preload="metadata" poster="images/lov-poster.jpg" title="Video iz lova" onPlay="{{ onLovPlay }}" onPause="{{ onLovPause }}" onClick="{{ toggleLov }}" onDoubleClick="{{ fsLov }}" style="position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover;background:#000;transition:transform .55s ease;" style-hover="transform:scale(1.06);"></video>
+          <button type="button" onClick="{{ playLov }}" aria-label="Pusti video" style="{{ lovBtnStyle }}"><svg viewBox="0 0 24 24" fill="#0d1811" style="width:38%;height:38%;"><path d="M8 5v14l11-7z"/></svg></button>
+          <figcaption style="{{ capLight }}">{{ t.galLov }}</figcaption>
+        </div>
+
+        <figure style="position:relative;margin:0;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:#111f16;border:1px solid #24352a;">
+          <img src="images/lov-ulov.jpg" alt="Pas u polju sa ulovom" style="width:100%;height:100%;object-fit:cover;object-position:center 34%;display:block;transition:transform .55s ease;" style-hover="transform:scale(1.06);">
+          <figcaption style="{{ capLight }}">{{ t.galLovUlov }}</figcaption>
+        </figure>
+
+        <div style="position:relative;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:#000;border:1px solid #24352a;">
+          <video ref="{{ aportVideoRef }}" src="images/aport-top.mp4" playsinline preload="metadata" poster="images/aport-poster.jpg" title="Aport iz lova" onPlay="{{ onAportPlay }}" onPause="{{ onAportPause }}" onClick="{{ toggleAport }}" onDoubleClick="{{ fsAport }}" style="position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover;background:#000;transition:transform .55s ease;" style-hover="transform:scale(1.06);"></video>
+          <button type="button" onClick="{{ playAport }}" aria-label="Pusti video" style="{{ aportBtnStyle }}"><svg viewBox="0 0 24 24" fill="#0d1811" style="width:38%;height:38%;"><path d="M8 5v14l11-7z"/></svg></button>
+          <figcaption style="{{ capStyle }}">{{ t.galAport }}</figcaption>
+        </div>
+
       </div>
     </div>
   </section>
@@ -142,7 +161,7 @@
     <div style="max-width:none;margin:0 auto;position:relative;border:1px solid #3a4d3f;border-radius:22px;padding:clamp(44px,6vw,80px) clamp(28px,5vw,68px);overflow:hidden;background:radial-gradient(120% 120% at 50% 0%, #17301f 0%, #0d1811 65%);display:flex;flex-direction:column;align-items:center;text-align:center;">
       <div style="font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#c9a24b;">{{ t.ctaEyebrow }}</div>
       <h2 style="margin:14px auto 0;font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;color:#fff;max-width:none;text-align:center;">{{ t.ctaTitle }}</h2>
-      <p style="margin:20px auto 0;max-width:none;font-size:1.15rem;color:#b3c1b6;text-align:center;">{{ t.ctaPara1 }}<br>{{ t.ctaPara2 }}</p>
+      <p style="margin:20px auto 0;max-width:none;font-size:clamp(1rem,4.3vw,1.15rem);line-height:1.5;color:#b3c1b6;text-align:center;">{{ t.ctaPara1 }}<br>{{ t.ctaPara2 }}</p>
       <div style="margin-top:32px;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;">
         <a href="https://calendly.com/nenadmilosevic2026/30min" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;background:#c9a24b;color:#0d1811;padding:16px 32px;border-radius:8px;font-weight:700;font-size:1.05rem;white-space:nowrap;" style-hover="background:#dcb862;color:#0d1811;">{{ t.navCta }}</a>
         <span style="display:inline-flex;align-items:center;gap:14px;">
@@ -188,6 +207,15 @@ const COPY = {
     statFollowNum: "6.300+",
     statFollow: "ljudi prati rad",
     statFci: "br. 5893 · član kinološkog saveza",
+    galEyebrow: "Galerija",
+    galTitle: "Iz ringa i iz polja",
+    galSub: "Snimci sa izložbi i iz lova i fotografije osvojenih titula.",
+    galIzl: "Nastup u ringu",
+    galPodium: "Pobednički podijum",
+    galPehari: "Osvojene titule",
+    galLov: "Rad u polju",
+    galLovUlov: "Sa ulovom",
+    galAport: "Aport",
     showEyebrow: "Sa izložbi",
     showTitle: "Pogledaj kako izgleda pobeda u ringu",
     huntEyebrow: "Iz lova",
@@ -221,6 +249,15 @@ const COPY = {
     statFollowNum: "6,300+",
     statFollow: "people follow the work",
     statFci: "reg. no. 5893 · kennel club member",
+    galEyebrow: "Gallery",
+    galTitle: "From the ring and the field",
+    galSub: "Footage from shows and hunts, and photos of the titles won.",
+    galIzl: "In the ring",
+    galPodium: "Winner's podium",
+    galPehari: "Titles won",
+    galLov: "Working the field",
+    galLovUlov: "With the game",
+    galAport: "Retrieve",
     showEyebrow: "From the shows",
     showTitle: "See what winning in the ring looks like",
     huntEyebrow: "From the hunt",
@@ -241,8 +278,9 @@ const COPY = {
 };
 
 class Component extends DCLogic {
-  state = { lang: "sr", mobile: false, menuOpen: false, lovPlaying: false, aportPlaying: false, izlPlaying: false };
+  state = { lang: "sr", mobile: false, menuOpen: false, lovPlaying: false, aportPlaying: false, izlPlaying: false, expN: 0, followN: 0 };
   componentDidMount() {
+    this._animStats(30, 6300, 1500);
     if (this._el && typeof ResizeObserver !== "undefined") {
       this._ro = new ResizeObserver((entries) => {
         const w = entries[0].contentRect.width;
@@ -252,7 +290,19 @@ class Component extends DCLogic {
       this._ro.observe(this._el);
     }
   }
-  componentWillUnmount() { if (this._ro) this._ro.disconnect(); }
+  componentWillUnmount() { if (this._ro) this._ro.disconnect(); if (this._raf) cancelAnimationFrame(this._raf); }
+  _animStats(expTarget, followTarget, dur) {
+    const t0 = performance.now();
+    const ease = (x) => 1 - Math.pow(1 - x, 3);
+    const tick = (now) => {
+      const p = Math.min(1, (now - t0) / dur);
+      const e = ease(p);
+      this.setState({ expN: Math.round(expTarget * e), followN: Math.round(followTarget * e) });
+      if (p < 1) this._raf = requestAnimationFrame(tick);
+    };
+    this._raf = requestAnimationFrame(tick);
+  }
+  _fs(v) { if (!v) return; const r = v.requestFullscreen || v.webkitRequestFullscreen || v.webkitEnterFullscreen; if (r) { try { r.call(v); } catch (e) {} } try { v.play(); } catch (e) {} }
   renderVals() {
     const lang = this.state.lang;
     const open = this.state.mobile && this.state.menuOpen;
@@ -261,8 +311,16 @@ class Component extends DCLogic {
     const idle = "background:transparent;color:#6f7d70;border:1px solid #2b3b30;border-radius:8px;padding:10px 17px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;";
     const mob = this.state.mobile;
     const pb = (d, playing) => "position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:" + d + "px;height:" + d + "px;border-radius:999px;border:none;background:#c9a24b;box-shadow:0 10px 28px -6px rgba(0,0,0,0.55);cursor:pointer;padding-left:" + Math.round(d*0.06) + "px;display:" + (playing ? "none" : "flex") + ";align-items:center;justify-content:center;transition:transform .18s,background .18s;";
+    const capStyle = "position:absolute;left:0;right:0;bottom:0;margin:0;padding:40px 16px 14px;background:linear-gradient(0deg,rgba(13,24,17,0.95) 0%,rgba(13,24,17,0.75) 45%,rgba(13,24,17,0) 100%);font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#f4f2ea;text-shadow:0 1px 6px rgba(0,0,0,0.6);pointer-events:none;";
+    const sep = lang === "en" ? "," : ".";
+    const capLight = "position:absolute;left:0;right:0;bottom:0;margin:0;padding:22px 16px 12px;background:linear-gradient(0deg,rgba(13,24,17,0.78) 0%,rgba(13,24,17,0.28) 55%,rgba(13,24,17,0) 100%);font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#f4f2ea;text-shadow:0 1px 8px rgba(0,0,0,0.85);pointer-events:none;";
+    const fmt = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, sep);
     return {
       t: COPY[lang] || COPY.sr,
+      capStyle: capStyle,
+      capLight: capLight,
+      expDisplay: this.state.expN + "+",
+      followDisplay: fmt(this.state.followN) + "+",
       setSr: () => this.setState({ lang: "sr" }),
       setEn: () => this.setState({ lang: "en" }),
       srBtnStyle: lang === "sr" ? active : idle,
@@ -276,23 +334,26 @@ class Component extends DCLogic {
       bar2Style: bar + (open ? "opacity:0;" : ""),
       bar3Style: bar + (open ? "transform:translateY(-7px) rotate(-45deg);" : ""),
       lovVideoRef: (el) => { this._lov = el; },
-      playLov: () => { if (this._lov) { this._lov.play(); } },
+      playLov: () => { const v = this._lov; if (v) { v.play().catch(()=>{ try{v.load();v.play();}catch(e){} }); } },
       toggleLov: () => { const v = this._lov; if (!v) return; if (v.paused) v.play(); else v.pause(); },
+      fsLov: () => this._fs(this._lov),
       onLovPlay: () => this.setState({ lovPlaying: true }),
       onLovPause: () => this.setState({ lovPlaying: false }),
-      lovBtnStyle: pb(mob ? 58 : 84, this.state.lovPlaying),
+      lovBtnStyle: pb(mob ? 54 : 72, this.state.lovPlaying),
       aportVideoRef: (el) => { this._aport = el; },
-      playAport: () => { if (this._aport) { this._aport.play(); } },
+      playAport: () => { const v = this._aport; if (v) { v.play().catch(()=>{ try{v.load();v.play();}catch(e){} }); } },
       toggleAport: () => { const v = this._aport; if (!v) return; if (v.paused) v.play(); else v.pause(); },
+      fsAport: () => this._fs(this._aport),
       onAportPlay: () => this.setState({ aportPlaying: true }),
       onAportPause: () => this.setState({ aportPlaying: false }),
-      aportBtnStyle: pb(mob ? 48 : 66, this.state.aportPlaying),
+      aportBtnStyle: pb(mob ? 54 : 72, this.state.aportPlaying),
       izlVideoRef: (el) => { this._izl = el; },
-      playIzl: () => { if (this._izl) { this._izl.play(); } },
+      playIzl: () => { const v = this._izl; if (v) { v.play().catch(()=>{ try{v.load();v.play();}catch(e){} }); } },
       toggleIzl: () => { const v = this._izl; if (!v) return; if (v.paused) v.play(); else v.pause(); },
+      fsIzl: () => this._fs(this._izl),
       onIzlPlay: () => this.setState({ izlPlaying: true }),
       onIzlPause: () => this.setState({ izlPlaying: false }),
-      izlBtnStyle: pb(mob ? 58 : 84, this.state.izlPlaying)
+      izlBtnStyle: pb(mob ? 54 : 72, this.state.izlPlaying)
     };
   }
 }
