@@ -24,7 +24,8 @@
   .hero-sec{min-height:clamp(600px,90vh,900px);}
   @media (max-width:600px){ .br-m{display:inline;} .sep-d{display:none;} .hero-sec{flex-direction:column;min-height:auto !important;padding:clamp(48px,9vw,90px) 24px 36px !important;} .hero-content{order:1;} .hero-bg{position:static !important;inset:auto !important;order:2;width:100% !important;height:auto !important;object-fit:contain !important;margin-top:32px;border-radius:16px;} .hero-ov{display:none !important;} .hero-cta{padding:13px 22px !important;font-size:0.95rem !important;} }
   .gal-grid{display:grid;gap:16px;grid-template-columns:repeat(3,1fr);-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;}
-  .gal-grid img,.gal-grid video{cursor:zoom-in;}
+  .gal-grid img,.gal-grid video{cursor:pointer;}
+  *{-webkit-tap-highlight-color:transparent;}
   @media (max-width:1040px){ .gal-grid{grid-template-columns:repeat(2,1fr);} }
   @media (max-width:600px){ .gal-grid{grid-template-columns:1fr;} }
 </style>
@@ -64,7 +65,7 @@
   </header>
 
   <section class="hero-sec" style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(72px,9vw,120px) 24px;overflow:hidden;">
-    <img src="images/hero-seter-stav.jpg" alt="Engleski seter u stavu na izložbi" class="hero-bg" onDoubleClick="{{ fsImg }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;cursor:zoom-in;"/>
+    <img src="images/hero-seter-stav.jpg" alt="Engleski seter u stavu na izložbi" ref="{{ heroRef }}" class="hero-bg" onClick="{{ expHero }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;cursor:pointer;"/>
     <div class="hero-ov" style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(13,24,17,0.66) 0%, rgba(13,24,17,0.42) 42%, rgba(13,24,17,0.9) 100%);"></div>
     <div class="hero-content" style="position:relative;max-width:none;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;">
       <div style="display:inline-block;text-align:center;border:1px solid rgba(201,162,75,0.55);background:rgba(13,24,17,0.35);backdrop-filter:blur(4px);color:#e0bb63;padding:8px 16px;border-radius:12px;font-family:'DM Mono',monospace;font-size:clamp(10px,2.9vw,12px);letter-spacing:0.05em;line-height:1.6;">{{ t.badge1 }}<span class="sep-d"> · </span><br class="br-m">{{ t.badge2 }}</div>
@@ -108,13 +109,13 @@
         </div>
 
         <figure style="position:relative;margin:0;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:#111f16;border:1px solid #24352a;">
-          <img src="images/podijum-premil.jpg" onDoubleClick="{{ fsImg }}" alt="Pas na pobedničkom podijumu izložbe" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s ease;" style-hover="transform:scale(1.06);">
-          <figcaption style="{{ capStyle }}">{{ t.galPodium }}</figcaption>
+          <img ref="{{ podiumRef }}" src="images/podijum-premil.jpg" onClick="{{ expPodium }}" alt="Pas na pobedničkom podijumu izložbe" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s ease;" style-hover="transform:scale(1.06);">
+          <figcaption style="{{ capStyle }}">{{ t.galPodium }}</figcaption><button type="button" onClick="{{ expPodium }}" aria-label="Uvećaj" style="position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:9px;border:none;background:rgba(6,10,8,0.55);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;" style-hover="background:rgba(6,10,8,0.82);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
         </figure>
 
         <figure style="position:relative;margin:0;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:#111f16;border:1px solid #24352a;">
-          <img src="images/1.jpg" onDoubleClick="{{ fsImg }}" alt="Seter sa osvojenim peharima" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s ease;" style-hover="transform:scale(1.06);">
-          <figcaption style="{{ capStyle }}">{{ t.galPehari }}</figcaption>
+          <img ref="{{ pehariRef }}" src="images/1.jpg" onClick="{{ expPehari }}" alt="Seter sa osvojenim peharima" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s ease;" style-hover="transform:scale(1.06);">
+          <figcaption style="{{ capStyle }}">{{ t.galPehari }}</figcaption><button type="button" onClick="{{ expPehari }}" aria-label="Uvećaj" style="position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:9px;border:none;background:rgba(6,10,8,0.55);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;" style-hover="background:rgba(6,10,8,0.82);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
         </figure>
 
         <div style="position:relative;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:#000;border:1px solid #24352a;">
@@ -124,8 +125,8 @@
         </div>
 
         <figure style="position:relative;margin:0;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:#111f16;border:1px solid #24352a;">
-          <img src="images/lov-ulov.jpg" onDoubleClick="{{ fsImg }}" alt="Pas u polju sa ulovom" style="width:100%;height:100%;object-fit:cover;object-position:center 34%;display:block;transition:transform .55s ease;" style-hover="transform:scale(1.06);">
-          <figcaption style="{{ capLight }}">{{ t.galLovUlov }}</figcaption>
+          <img ref="{{ ulovRef }}" src="images/lov-ulov.jpg" onClick="{{ expUlov }}" alt="Pas u polju sa ulovom" style="width:100%;height:100%;object-fit:cover;object-position:center 34%;display:block;transition:transform .55s ease;" style-hover="transform:scale(1.06);">
+          <figcaption style="{{ capLight }}">{{ t.galLovUlov }}</figcaption><button type="button" onClick="{{ expUlov }}" aria-label="Uvećaj" style="position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:9px;border:none;background:rgba(6,10,8,0.55);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;" style-hover="background:rgba(6,10,8,0.82);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
         </figure>
 
         <div style="position:relative;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:#000;border:1px solid #24352a;">
@@ -375,7 +376,14 @@ class Component extends DCLogic {
       playIzl: () => { const v = this._izl; if (v) { v.play().catch(()=>{ try{v.load();v.play();}catch(e){} }); } },
       toggleIzl: () => this._toggle(this._izl),
       expIzl: () => this._openVid(this._izl),
-      fsImg: (e) => { if (e && e.preventDefault) e.preventDefault(); this._openImg(e.currentTarget); },
+      heroRef: (el) => { this._hero = el; },
+      podiumRef: (el) => { this._podium = el; },
+      pehariRef: (el) => { this._pehari = el; },
+      ulovRef: (el) => { this._ulovImg = el; },
+      expHero: () => this._openImg(this._hero),
+      expPodium: () => this._openImg(this._podium),
+      expPehari: () => this._openImg(this._pehari),
+      expUlov: () => this._openImg(this._ulovImg),
       lbStyle: "position:fixed;inset:0;z-index:200;display:" + (this.state.lb ? "flex" : "none") + ";align-items:center;justify-content:center;background:rgba(6,10,8,0.95);padding:20px;",
       lbIsImg: !!(this.state.lb && this.state.lb.type === "img"),
       lbIsVid: !!(this.state.lb && this.state.lb.type === "vid"),
