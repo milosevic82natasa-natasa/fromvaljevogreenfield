@@ -120,7 +120,7 @@
     .hero-ov{display:none;}
     .hero-in{order:1;}
     .hero .cta{padding:13px 22px;font-size:0.95rem;}
-    .hero-exp{top:16px;right:16px;}
+    .hero-exp{top:16px;right:16px;display:none;}
   }
 </style>
 </head>
@@ -331,8 +331,9 @@
       video.addEventListener("pause", sync);
       var tapT = null;
       video.addEventListener("click", function(){
+        if(video.paused){ try{ video.play(); }catch(err){} return; }
         if(tapT){ clearTimeout(tapT); tapT=null; try{video.pause();}catch(err){} openVid(video.currentSrc||video.getAttribute("src")); return; }
-        tapT = setTimeout(function(){ tapT=null; if(video.paused) video.play(); else video.pause(); }, 250);
+        tapT = setTimeout(function(){ tapT=null; try{video.pause();}catch(err){} }, 250);
       });
       video.addEventListener("dblclick", function(e){ e.preventDefault(); });
       if(playBtn) playBtn.addEventListener("click", function(e){ e.stopPropagation(); video.play(); });
