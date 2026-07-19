@@ -114,6 +114,7 @@
     .navd{display:none;}
     .burger{display:inline-flex;}
     .gal-grid{grid-template-columns:1fr;gap:22px;}
+    .tile.img .exp{display:none;}
     .hero{flex-direction:column;min-height:auto;padding:clamp(48px,9vw,90px) 24px 36px;}
     .hero-bg{position:static;order:2;width:100%;height:auto;object-fit:contain;margin-top:32px;border-radius:16px;}
     .hero-ov{display:none;}
@@ -328,7 +329,12 @@
       function sync(){ if(playBtn) playBtn.classList.toggle("hide", !video.paused); }
       video.addEventListener("play", sync);
       video.addEventListener("pause", sync);
-      video.addEventListener("click", function(){ if(video.paused) video.play(); else video.pause(); });
+      var tapT = null;
+      video.addEventListener("click", function(){
+        if(tapT){ clearTimeout(tapT); tapT=null; try{video.pause();}catch(err){} openVid(video.currentSrc||video.getAttribute("src")); return; }
+        tapT = setTimeout(function(){ tapT=null; if(video.paused) video.play(); else video.pause(); }, 250);
+      });
+      video.addEventListener("dblclick", function(e){ e.preventDefault(); });
       if(playBtn) playBtn.addEventListener("click", function(e){ e.stopPropagation(); video.play(); });
     })(vids[v]);
   }
