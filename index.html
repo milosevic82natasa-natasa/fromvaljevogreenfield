@@ -77,7 +77,7 @@
     </div>
   </section>
 
-  <section id="dokazi" style="padding:clamp(28px,4vw,44px) 24px;">
+  <section id="dokazi" ref="{{ statsRef }}" style="padding:clamp(28px,4vw,44px) 24px;">
     <div style="max-width:none;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;gap:14px;">
       <div style="flex:1 1 150px;min-width:150px;background:#111f16;border:1px solid #24352a;border-radius:14px;padding:clamp(16px,2.4vw,26px) clamp(10px,1.6vw,20px);text-align:center;">
         <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.5rem,4.6vw,2.6rem);line-height:1.05;color:#c9a24b;word-break:break-word;">{{ expDisplay }}</div>
@@ -102,8 +102,8 @@
       <div class="gal-grid" style="margin-top:44px;">
 
         <div style="position:relative;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:#000;border:1px solid #24352a;">
-          <video ref="{{ izlVideoRef }}" src="images/1-2.mp4" playsinline preload="metadata" poster="images/izl-poster.jpg" title="Video sa izložbe" onPlay="{{ onIzlPlay }}" onPause="{{ onIzlPause }}" onClick="{{ clkIzl }}" onDoubleClick="{{ dblIzl }}" style="position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover;background:#000;transition:transform .55s ease;" style-hover="transform:scale(1.06);"></video>
-          <button type="button" onClick="{{ playIzl }}" aria-label="Pusti video" style="{{ izlBtnStyle }}"><svg viewBox="0 0 24 24" fill="#0d1811" style="width:38%;height:38%;"><path d="M8 5v14l11-7z"/></svg></button>
+          <video ref="{{ izlVideoRef }}" src="images/1-2.mp4" playsinline preload="metadata" poster="images/izl-poster.jpg" title="Video sa izložbe" onPlay="{{ onIzlPlay }}" onPause="{{ onIzlPause }}" onClick="{{ toggleIzl }}" style="position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover;background:#000;transition:transform .55s ease;" style-hover="transform:scale(1.06);"></video>
+          <button type="button" onClick="{{ playIzl }}" aria-label="Pusti video" style="{{ izlBtnStyle }}"><svg viewBox="0 0 24 24" fill="#0d1811" style="width:38%;height:38%;"><path d="M8 5v14l11-7z"/></svg></button><button type="button" onClick="{{ expIzl }}" aria-label="Uvećaj" style="position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:9px;border:none;background:rgba(6,10,8,0.55);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;" style-hover="background:rgba(6,10,8,0.82);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
           <figcaption style="{{ capStyle }}">{{ t.galIzl }}</figcaption>
         </div>
 
@@ -118,8 +118,8 @@
         </figure>
 
         <div style="position:relative;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:#000;border:1px solid #24352a;">
-          <video ref="{{ lovVideoRef }}" src="images/2-2-2.mp4" playsinline preload="metadata" poster="images/lov-poster.jpg" title="Video iz lova" onPlay="{{ onLovPlay }}" onPause="{{ onLovPause }}" onClick="{{ clkLov }}" onDoubleClick="{{ dblLov }}" style="position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover;background:#000;transition:transform .55s ease;" style-hover="transform:scale(1.06);"></video>
-          <button type="button" onClick="{{ playLov }}" aria-label="Pusti video" style="{{ lovBtnStyle }}"><svg viewBox="0 0 24 24" fill="#0d1811" style="width:38%;height:38%;"><path d="M8 5v14l11-7z"/></svg></button>
+          <video ref="{{ lovVideoRef }}" src="images/2-2-2.mp4" playsinline preload="metadata" poster="images/lov-poster.jpg" title="Video iz lova" onPlay="{{ onLovPlay }}" onPause="{{ onLovPause }}" onClick="{{ toggleLov }}" style="position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover;background:#000;transition:transform .55s ease;" style-hover="transform:scale(1.06);"></video>
+          <button type="button" onClick="{{ playLov }}" aria-label="Pusti video" style="{{ lovBtnStyle }}"><svg viewBox="0 0 24 24" fill="#0d1811" style="width:38%;height:38%;"><path d="M8 5v14l11-7z"/></svg></button><button type="button" onClick="{{ expLov }}" aria-label="Uvećaj" style="position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:9px;border:none;background:rgba(6,10,8,0.55);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;" style-hover="background:rgba(6,10,8,0.82);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
           <figcaption style="{{ capLight }}">{{ t.galLov }}</figcaption>
         </div>
 
@@ -129,8 +129,8 @@
         </figure>
 
         <div style="position:relative;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:#000;border:1px solid #24352a;">
-          <video ref="{{ aportVideoRef }}" src="images/aport-top.mp4" playsinline preload="metadata" poster="images/aport-poster.jpg" title="Aport iz lova" onPlay="{{ onAportPlay }}" onPause="{{ onAportPause }}" onClick="{{ clkAport }}" onDoubleClick="{{ dblAport }}" style="position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover;background:#000;transition:transform .55s ease;" style-hover="transform:scale(1.06);"></video>
-          <button type="button" onClick="{{ playAport }}" aria-label="Pusti video" style="{{ aportBtnStyle }}"><svg viewBox="0 0 24 24" fill="#0d1811" style="width:38%;height:38%;"><path d="M8 5v14l11-7z"/></svg></button>
+          <video ref="{{ aportVideoRef }}" src="images/aport-top.mp4" playsinline preload="metadata" poster="images/aport-poster.jpg" title="Aport iz lova" onPlay="{{ onAportPlay }}" onPause="{{ onAportPause }}" onClick="{{ toggleAport }}" style="position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover;background:#000;transition:transform .55s ease;" style-hover="transform:scale(1.06);"></video>
+          <button type="button" onClick="{{ playAport }}" aria-label="Pusti video" style="{{ aportBtnStyle }}"><svg viewBox="0 0 24 24" fill="#0d1811" style="width:38%;height:38%;"><path d="M8 5v14l11-7z"/></svg></button><button type="button" onClick="{{ expAport }}" aria-label="Uvećaj" style="position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:9px;border:none;background:rgba(6,10,8,0.55);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;" style-hover="background:rgba(6,10,8,0.82);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
           <figcaption style="{{ capStyle }}">{{ t.galAport }}</figcaption>
         </div>
 
@@ -289,7 +289,7 @@ const COPY = {
 class Component extends DCLogic {
   state = { lang: "sr", mobile: false, menuOpen: false, lovPlaying: false, aportPlaying: false, izlPlaying: false, expN: 0, followN: 0, lb: null };
   componentDidMount() {
-    this._animStats(30, 6300, 1500);
+    this._setupStats();
     if (this._el && typeof ResizeObserver !== "undefined") {
       this._ro = new ResizeObserver((entries) => {
         const w = entries[0].contentRect.width;
@@ -299,7 +299,16 @@ class Component extends DCLogic {
       this._ro.observe(this._el);
     }
   }
-  componentWillUnmount() { if (this._ro) this._ro.disconnect(); if (this._raf) cancelAnimationFrame(this._raf); }
+  componentWillUnmount() { if (this._ro) this._ro.disconnect(); if (this._io) this._io.disconnect(); if (this._raf) cancelAnimationFrame(this._raf); }
+  _setupStats() {
+    const el = this._stats;
+    const run = () => { if (this._statsDone) return; this._statsDone = true; this._animStats(30, 6300, 1500); };
+    if (!el || typeof IntersectionObserver === "undefined") { run(); return; }
+    this._io = new IntersectionObserver((ents) => { ents.forEach((en) => { if (en.isIntersecting) { run(); if (this._io) this._io.disconnect(); } }); }, { threshold: 0.35 });
+    this._io.observe(el);
+    setTimeout(() => { if (!this._statsDone) { const r = el.getBoundingClientRect(); if (r.top < (window.innerHeight || 800)) run(); } }, 400);
+    setTimeout(() => { if (!this._statsDone) { this._statsDone = true; this.setState({ expN: 30, followN: 6300 }); } }, 4000);
+  }
   _animStats(expTarget, followTarget, dur) {
     const t0 = performance.now();
     const ease = (x) => 1 - Math.pow(1 - x, 3);
@@ -310,9 +319,11 @@ class Component extends DCLogic {
       if (p < 1) this._raf = requestAnimationFrame(tick);
     };
     this._raf = requestAnimationFrame(tick);
+    clearTimeout(this._statsFinal);
+    this._statsFinal = setTimeout(() => { this.setState({ expN: expTarget, followN: followTarget }); }, dur + 120);
   }
-  _clk(v) { clearTimeout(this._ct); this._ct = setTimeout(() => { if (!v) return; if (v.paused) v.play(); else v.pause(); }, 240); }
-  _dbl(v) { clearTimeout(this._ct); if (!v) return; try { v.pause(); } catch (e) {} this.setState({ lb: { type: "vid", src: v.currentSrc || v.src } }); }
+  _toggle(v) { if (!v) return; if (v.paused) v.play(); else v.pause(); }
+  _openVid(v) { if (!v) return; try { v.pause(); } catch (e) {} this.setState({ lb: { type: "vid", src: v.currentSrc || v.src } }); }
   _openImg(el) { if (!el) return; this.setState({ lb: { type: "img", src: el.currentSrc || el.src } }); }
   renderVals() {
     const lang = this.state.lang;
@@ -337,6 +348,7 @@ class Component extends DCLogic {
       srBtnStyle: lang === "sr" ? active : idle,
       enBtnStyle: lang === "en" ? active : idle,
       measureRef: (el) => { this._el = el; },
+      statsRef: (el) => { this._stats = el; },
       mobile: this.state.mobile,
       desktop: !this.state.mobile,
       menuOpen: open,
@@ -346,22 +358,22 @@ class Component extends DCLogic {
       bar3Style: bar + (open ? "transform:translateY(-7px) rotate(-45deg);" : ""),
       lovVideoRef: (el) => { this._lov = el; },
       playLov: () => { const v = this._lov; if (v) { v.play().catch(()=>{ try{v.load();v.play();}catch(e){} }); } },
-      clkLov: () => this._clk(this._lov),
-      dblLov: () => this._dbl(this._lov),
+      toggleLov: () => this._toggle(this._lov),
+      expLov: () => this._openVid(this._lov),
       onLovPlay: () => this.setState({ lovPlaying: true }),
       onLovPause: () => this.setState({ lovPlaying: false }),
       lovBtnStyle: pb(mob ? 54 : 72, this.state.lovPlaying),
       aportVideoRef: (el) => { this._aport = el; },
       playAport: () => { const v = this._aport; if (v) { v.play().catch(()=>{ try{v.load();v.play();}catch(e){} }); } },
-      clkAport: () => this._clk(this._aport),
-      dblAport: () => this._dbl(this._aport),
+      toggleAport: () => this._toggle(this._aport),
+      expAport: () => this._openVid(this._aport),
       onAportPlay: () => this.setState({ aportPlaying: true }),
       onAportPause: () => this.setState({ aportPlaying: false }),
       aportBtnStyle: pb(mob ? 54 : 72, this.state.aportPlaying),
       izlVideoRef: (el) => { this._izl = el; },
       playIzl: () => { const v = this._izl; if (v) { v.play().catch(()=>{ try{v.load();v.play();}catch(e){} }); } },
-      clkIzl: () => this._clk(this._izl),
-      dblIzl: () => this._dbl(this._izl),
+      toggleIzl: () => this._toggle(this._izl),
+      expIzl: () => this._openVid(this._izl),
       fsImg: (e) => { if (e && e.preventDefault) e.preventDefault(); this._openImg(e.currentTarget); },
       lbStyle: "position:fixed;inset:0;z-index:200;display:" + (this.state.lb ? "flex" : "none") + ";align-items:center;justify-content:center;background:rgba(6,10,8,0.95);padding:20px;",
       lbIsImg: !!(this.state.lb && this.state.lb.type === "img"),
