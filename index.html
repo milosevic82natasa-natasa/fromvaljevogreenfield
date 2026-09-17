@@ -2,6 +2,10 @@
 <html lang="sr">
 <head>
 <meta charset="utf-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GSRRE1QL9T"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GSRRE1QL9T');</script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KF3FKPZD');</script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>From Valjevo Green Fields, engleski seteri</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -125,6 +129,7 @@
 </style>
 </head>
 <body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KF3FKPZD" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <header>
   <div class="hrow wrap">
@@ -354,6 +359,75 @@
   // expand: videos (button carries no src -> read sibling video)
   var expVids = document.querySelectorAll("[data-exp-vid]");
   for (var b=0;b<expVids.length;b++){ expVids[b].addEventListener("click", function(e){ e.stopPropagation(); var tile=this.closest(".tile"); var vid=tile.querySelector("video"); if(vid){ try{vid.pause();}catch(err){} openVid(vid.currentSrc||vid.getAttribute("src")); } }); }
+})();
+</script>
+
+<script>
+(function(){
+  window.dataLayer = window.dataLayer || [];
+  function push(ev, obj){ obj = obj || {}; obj.event = ev; window.dataLayer.push(obj); if (typeof gtag === "function") { var p = {}; for (var k in obj) { if (k !== "event") p[k] = obj[k]; } gtag("event", ev, p); } }
+  function fileName(u){ try { return String(u).split("/").pop(); } catch(e){ return ""; } }
+
+  document.addEventListener("click", function(e){
+    var a = e.target.closest ? e.target.closest("a") : null;
+    if (a && a.href) {
+      var h = a.href;
+      if (h.indexOf("calendly.com") > -1) push("zakazivanje_klik", { mesto: a.className || "link", jezik: document.documentElement.lang });
+      else if (h.indexOf("tel:") === 0) push("telefon_klik", { broj: h.replace("tel:","") });
+      else if (h.indexOf("wa.me") > -1 || h.indexOf("whatsapp") > -1) push("whatsapp_klik", {});
+      else if (h.indexOf("instagram.com") > -1) push("instagram_klik", {});
+      else if (h.indexOf("facebook.com") > -1) push("facebook_klik", {});
+      return;
+    }
+    var lb = e.target.closest ? e.target.closest(".langbtn") : null;
+    if (lb) push("jezik_promena", { jezik: lb.getAttribute("data-lang") });
+    var ex = e.target.closest ? e.target.closest(".exp, .hero-exp") : null;
+    if (ex) push("galerija_uvecanje", {});
+  }, true);
+
+  var vids = document.querySelectorAll("video[data-play]");
+  Array.prototype.forEach.call(vids, function(v, i){
+    var name = fileName(v.getAttribute("src")) || ("video_" + (i+1));
+    var seen = {};
+    v.addEventListener("play", function(){
+      if (!seen.start) { seen.start = 1; push("video_start", { video: name }); }
+    });
+    v.addEventListener("timeupdate", function(){
+      if (!v.duration) return;
+      var p = v.currentTime / v.duration;
+      [25,50,75].forEach(function(m){
+        if (p >= m/100 && !seen[m]) { seen[m] = 1; push("video_progress", { video: name, procenat: m }); }
+      });
+    });
+    v.addEventListener("ended", function(){
+      if (!seen[100]) { seen[100] = 1; push("video_complete", { video: name }); }
+    });
+  });
+
+  var marks = [25,50,75,100], hit = {};
+  function onScroll(){
+    var d = document.documentElement;
+    var max = d.scrollHeight - window.innerHeight;
+    if (max <= 0) return;
+    var p = (window.pageYOffset / max) * 100;
+    marks.forEach(function(m){
+      if (p >= m && !hit[m]) { hit[m] = 1; push("skrol_dubina", { procenat: m }); }
+    });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  var sekcije = document.querySelectorAll("section[id]");
+  if (window.IntersectionObserver && sekcije.length) {
+    var seenSec = {};
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        var id = en.target.id;
+        if (en.isIntersecting && !seenSec[id]) { seenSec[id] = 1; push("sekcija_vidjena", { sekcija: id }); }
+      });
+    }, { threshold: 0.4 });
+    Array.prototype.forEach.call(sekcije, function(s){ io.observe(s); });
+  }
 })();
 </script>
 </body>
